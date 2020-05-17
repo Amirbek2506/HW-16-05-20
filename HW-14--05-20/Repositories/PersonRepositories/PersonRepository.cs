@@ -1,16 +1,19 @@
 ﻿using Dapper;
+using HW_14__05_20.Interfaces;
 using HW_14__05_20.Persons;
+using HW_14__05_20.Printer;
 using System;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace HW_14__05_20.Repositories.PersonRepositories
 {
-    class PersonRepository : RepositoryBase<Person>
+    class PersonRepository : RepositoryBase<Person>,ICRUD
     {
         public PersonRepository():base()
         {
         }
+        ConsolePrinter ConsolePrint = new ConsolePrinter();
         public void Create()
         {
             Person person = new Person();
@@ -23,25 +26,25 @@ namespace HW_14__05_20.Repositories.PersonRepositories
                 {
                     var command = $"INSERT INTO Person([LastName],[FirstName],[BirthYear]) VALUES('{person.LastName}','{person.FirstName}',{person.BirthYear}); SELECT CAST(SCOPE_IDENTITY() AS INT)";
                     db.Query<int>(command, person);
-                    Console.WriteLine("Успешно добавлен!");
+                    ConsolePrint.PrintText("Успешно добавлен!");
                 }
             }
             catch (SqlException ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                ConsolePrint.PrintText($"Error: {ex.Message}");
             }
         }
         public void Read()
         {
            foreach(var item in SelectAll())
             {
-                Console.WriteLine($"Id: {item.Id} |  LastName: {item.LastName} |  FirstName: {item.FirstName} |  BirthYear: {item.BirthYear}");
+              ConsolePrint.PrintPerson(item);
             }
         }
         public void Update()
         {
             Read();
-            Console.WriteLine("Введите ID человека каторый вы хотели изменит его данны!!!");
+            ConsolePrint.PrintText("Введите ID человека каторый вы хотели изменит его данны!!!");
             Console.Write("ID: ");
             int ID = int.Parse(Console.ReadLine());Console.Clear();
             Person person = new Person();
@@ -54,12 +57,12 @@ namespace HW_14__05_20.Repositories.PersonRepositories
                 {
                     var command = $"UPDATE Person SET LastName = '{person.LastName}', FirstName = '{person.FirstName}',BirthYear ={person.BirthYear} WHERE Id = {ID}";
                     db.Execute(command, person);
-                    Console.WriteLine("Успешно изменено!");
+                    ConsolePrint.PrintText("Успешно изменено!");
                 }
             }
             catch (SqlException ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                ConsolePrint.PrintText($"Error: {ex.Message}");
             }
         }
         public void Delete()

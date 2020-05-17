@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HW_14__05_20.Persons
+﻿namespace HW_14__05_20.Persons
 {
     class Person
     {

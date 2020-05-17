@@ -1339,11 +1339,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\projects\\HW-14--05-20\\HW-14--05-20\\HW-14--05-20.csproj",
+      "projectUniqueName": "D:\\projects\\HW-16-05-20\\HW-14--05-20\\HW-14--05-20.csproj",
       "projectName": "HW-14--05-20",
-      "projectPath": "D:\\projects\\HW-14--05-20\\HW-14--05-20\\HW-14--05-20.csproj",
+      "projectPath": "D:\\projects\\HW-16-05-20\\HW-14--05-20\\HW-14--05-20.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "D:\\projects\\HW-14--05-20\\HW-14--05-20\\obj\\",
+      "outputPath": "D:\\projects\\HW-16-05-20\\HW-14--05-20\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\ProgramData\\Xamarin\\NuGet\\",
